@@ -23,6 +23,7 @@
     "check-config": "node ./scripts/check-config.js || (echo \"Create the config file by copying config.example.js to config.js\" && exit 1)",
     "mongo-indexes": "node dist/mongo_setup.js",
     "api": "tsc-watch --onSuccess \"node dist/api.js\"",
+    "apidocs": "node dist/apidoc.js",
     "blockrange": "tsc-watch --onSuccess \"node dist/blockrange.js\"",
     "filler": "tsc-watch --onSuccess \"node dist/filler.js ${flags}\"",
     "processor": "tsc-watch --onSuccess \"node dist/processor.js\""
@@ -55,6 +56,7 @@
     "fastify-cors": "^5.2.0",
     "fastify-mongodb": "^2.0.1",
     "fastify-oas": "^3.0.8",
+    "fastify-static": "^4.5.0",
     "file-exists": "^5.0.1",
     "http": "^0.0.1-security",
     "mongodb": "^3.6.3",

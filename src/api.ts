@@ -2,11 +2,9 @@
 
 process.title = 'eosdac-api';
 
-// const openApi = require('./open-api');
-// const {loadConfig} = require('./functions');
-// const path = require('path');
 import path from 'path';
-import fastify, { FastifyInstance, RouteShorthandOptions } from 'fastify';
+import openApi from './constants/openapi';
+import fastify, { FastifyInstance } from 'fastify';
 import fastifyOas from 'fastify-oas';
 import fastifyCors from 'fastify-cors';
 import fastifyAutoload from 'fastify-autoload';
@@ -14,30 +12,12 @@ import fastifyMongo from 'fastify-mongodb';
 import { Server, IncomingMessage, ServerResponse } from 'http';
 const config = require('./config');
 
-const logger = console;
-
 const server: FastifyInstance<Server, IncomingMessage, ServerResponse> =
   fastify({
     ignoreTrailingSlash: true,
     trustProxy: true,
     logger: true,
   });
-
-const openApi = {
-  routePrefix: '/v1/alienworlds/docs',
-  exposeRoute: true,
-  swagger: {
-    info: {
-      title: 'Alien Worlds API',
-      description: 'API for Alien Worlds information',
-      version: '1.0.0',
-    },
-    host: config.docs_host || 'localhost',
-    schemes: config.api.schemes || ['https'],
-    consumes: ['application/json'],
-    produces: ['application/json'],
-  },
-};
 
 server.register(fastifyOas, openApi);
 
